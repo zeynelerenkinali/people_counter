@@ -29,6 +29,7 @@ pip install opencv-python-headless ultralytics torch numpy sort cvzone
     Clone the repository: Clone this repository to your local machine.
 
 git clone https://github.com/yourusername/people-counter-yolov8.git
+
 cd people-counter-yolov8
 
 Download YOLOv8 weights: Download the YOLOv8 model weights (yolov8l.pt) and place them in the yolo_weights/ directory.
