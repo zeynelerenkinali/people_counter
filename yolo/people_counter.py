@@ -10,8 +10,8 @@ if not cap.isOpened():
 
 
 model = YOLO("yolo_weights/yolov8l.pt")
-totalCount = []
-totalCount_2 = []
+countDown = []
+countUp = []
 
 classNames = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck", "boat",
               "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat",
@@ -34,9 +34,9 @@ mask = cv2.imread("yolo/mask.png")
 # Tracking
 tracker = Sort(max_age=20, min_hits=3, iou_threshold=0.3)
 
-limits = (440, 297, 650, 297)
+limitsDown = (440, 297, 650, 297)
 
-limits_2 = (180, 297, 350, 297)
+limitsUp = (180, 297, 350, 297)
 
 while True:
     success, img = cap.read()
@@ -73,8 +73,8 @@ while True:
                 detections = np.vstack((detections, currentArray))
 
     resultsTracker = tracker.update(detections)
-    cv2.line(img, (limits[0], limits[1]), (limits[2], limits[3]), (0, 0, 255), 5)
-    cv2.line(img, (limits_2[0], limits_2[1]), (limits_2[2], limits_2[3]), (255, 0, 0), 5)
+    cv2.line(img, (limitsDown[0], limitsDown[1]), (limitsDown[2], limitsDown[3]), (0, 0, 255), 5)
+    cv2.line(img, (limitsUp[0], limitsUp[1]), (limitsUp[2], limitsUp[3]), (255, 0, 0), 5)
 
     for result in resultsTracker:
         x1, y1, x2, y2, id = result
@@ -88,17 +88,17 @@ while True:
         
         cx, cy = x1+w//2, y1+h//2
         cv2.circle(img,(cx,cy), 5, (255,0,255), cv2.FILLED)
-        if limits[0] < cx < limits[2] and limits[1] - 15 < cy < limits[1] + 15:
-            if(totalCount.count(id) == 0):
-                totalCount.append(id)
-                cv2.line(img, (limits[0], limits[1]), (limits[2], limits[3]), (0, 255, 0), 5)
-        if limits_2[0] < cx < limits_2[2] and limits_2[1] - 15 < cy < limits_2[1] + 15:
-            if(totalCount_2.count(id) == 0):
-                totalCount_2.append(id)
-                cv2.line(img, (limits_2[0], limits_2[1]), (limits_2[2], limits_2[3]), (0, 255, 0), 5)
+        if limitsDown[0] < cx < limitsDown[2] and limitsDown[1] - 15 < cy < limitsDown[1] + 15:
+            if(countDown.count(id) == 0):
+                countDown.append(id)
+                cv2.line(img, (limitsDown[0], limitsDown[1]), (limitsDown[2], limitsDown[3]), (0, 255, 0), 5)
+        if limitsUp[0] < cx < limitsUp[2] and limitsUp[1] - 15 < cy < limitsUp[1] + 15:
+            if(countUp.count(id) == 0):
+                countUp.append(id)
+                cv2.line(img, (limitsUp[0], limitsUp[1]), (limitsUp[2], limitsUp[3]), (0, 255, 0), 5)
     
-    cv2.putText(img, str(len(totalCount_2)),(200,80), cv2.FONT_HERSHEY_PLAIN, 4, (0,255,0), 8)
-    cv2.putText(img, str(len(totalCount)),(450,80), cv2.FONT_HERSHEY_PLAIN, 4, (0,0,255), 8)
+    cv2.putText(img, str(len(countUp)),(200,80), cv2.FONT_HERSHEY_PLAIN, 4, (0,255,0), 8)
+    cv2.putText(img, str(len(countDown)),(450,80), cv2.FONT_HERSHEY_PLAIN, 4, (0,0,255), 8)
     cv2.imshow("Image", img)
     cv2.waitKey(1) # when we turn waitkey to zero we can move by keyboard
 
