@@ -37,16 +37,6 @@ Run the project: Execute the script to process the video input and count the num
 
     python people_counter.py
 
-## Project Structure
-
-.
-├── yolo_weights/             # Directory for YOLOv8 weights
-├── videos/                   # Directory for input videos
-├── yolo/mask.png             # Mask image used for region focusing
-├── yolo/graphics.png         # Overlay graphics image
-├── people_counter.py         # Main script for counting people
-└── README.md                 # Project documentation
-
 ## How It Works
 
     The system loads a pre-trained YOLOv8 model from the yolo_weights/ directory to detect people in the input video.
