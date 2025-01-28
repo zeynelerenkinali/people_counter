@@ -24,7 +24,7 @@ You can install the necessary packages using:
 ```bash
 pip install opencv-python-headless ultralytics torch numpy sort cvzone
 ```
-Usage
+## Usage
 
     Clone the repository: Clone this repository to your local machine.
 
@@ -37,7 +37,7 @@ Run the project: Execute the script to process the video input and count the num
 
     python people_counter.py
 
-Project Structure
+## Project Structure
 
 .
 ├── yolo_weights/             # Directory for YOLOv8 weights
@@ -47,7 +47,7 @@ Project Structure
 ├── people_counter.py         # Main script for counting people
 └── README.md                 # Project documentation
 
-How It Works
+## How It Works
 
     The system loads a pre-trained YOLOv8 model from the yolo_weights/ directory to detect people in the input video.
     A mask image (mask.png) is used to focus detection on specific regions of the video.
@@ -55,17 +55,14 @@ How It Works
     The system counts how many people cross predefined lines in two regions of the video (with different color-coded lines).
     Custom overlay graphics are displayed on the output video, along with the people count.
 
-Demo
+## Demo
 
 A demo video (videos/people.mp4) is processed using the YOLOv8 people counter. The output displays the number of people crossing each of the two defined zones.
 
 To view the output video with the people count, run the project as shown in the Usage section.
-References
+
+## References
 
     YOLOv8 by Ultralytics
     SORT Tracking Algorithm
     OpenCV Documentation
-
-
-This format includes all the sections, and the commands are in separate blocks for easy copying!
-
