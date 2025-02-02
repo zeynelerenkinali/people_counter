@@ -65,3 +65,9 @@ To view the output video with the people count, run the project as shown in the 
 - YOLOv8 by Ultralytics  
 - SORT Tracking Algorithm  
 - OpenCV Documentation
+
+---
+
+## License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
